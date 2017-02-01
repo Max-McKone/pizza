@@ -5,7 +5,7 @@
   "main": "build",
   "scripts": {
     "start": "node build/server",
-    "build-client": "webpack build/client build/client/bundle.js",
+    "build-client": "webpack -p build/client build/client/bundle.js",
     "build-babel": "babel source -d build",
     "build-copy": "cp source/client/index.html build/client/index.html",
     "build": "npm run -s build-babel && npm run -s build-client && npm run -s build-copy",
