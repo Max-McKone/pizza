@@ -34,50 +34,35 @@ li a:hover {
   <li><a href="root.html">Home</a></li>
   <li><a href="order.html">Bestellen</a></li>
   <li><a href="user.html">Mitarbeiter</a></li>
-  <li><a href="#about">About</a></li>
+  <li><a href="about.html">About</a></li>
 </ul>
 
 <h1>Bestellung</h1>
 <p></p>
 
-<tr>
-<td width="250">Class &quot;A&quot; Widgets</td>
-<td align="center" width="100">
-<input type="text" name="qtyA" size="5" tabindex="5" onchange="calculate()"></td>
-<td align="right" width="60">1.25</td>
-<td align="right" width="140">
-<input type="text" name="totalA" size="12" tabindex="99" onchange="calculate()"></td>
-</tr>
-<tr>
-<td width="250">Class &quot;B&quot; Widgets</td>
-<td align="center" width="100">
-<input type="text" name="qtyB" size="5" tabindex="5" onchange="calculate()"></td>
-<td align="right" width="60">2.35</td>
-<td align="right" width="140">
-<input type="text" name="totalB" size="12" tabindex="99" onchange="calculate()"></td>
-</tr>
-<tr>
-<td width="250">Class &quot;C&quot; Widgets</td>
-<td align="center" width="100">
-<input type="text" name="qtyC" size="5" tabindex="5" onchange="calculate()"></td>
-<td align="right" width="60">3.45</td>
-<td align="right" width="140">
-<input type="text" name="totalC" size="12" tabindex="99" onchange="calculate()"></td>
-</tr>
-<tr>
-<td width="250">&nbsp;</td>
-<td align="center" width="100">&nbsp;</td>
-<td align="right" width="60">&nbsp;</td>
-<td align="right" width="140">&nbsp;</td>
-</tr>
-<tr>
-<td width="250">
-<p align="right"><b>TOTALS:</b></td>
-<td align="center" width="100">&nbsp;</td>
-<td align="right" width="60">&nbsp;</td>
-<td align="right" width="140">
-<input type="text" name="GrandTotal" size="15" tabindex="99" onchange="calculate()"></td>
-</tr>
+<H1></H1>
+<CENTER><B><FONT face="Verdana" size="4">Pizza Co.</FONT></B></CENTER>
+<H1></H1>
+<P><FONT color="#FF0000" face="Tahoma">Bestellung aufgeben</FONT> </P>
+<FORM action="bestaetigung.html" method="POST">
+  <P>Name: <INPUT type="text" name="name" value> </P>
+  <P>Adresse: <INPUT type="text" name="address" value> </P>
+  <P>Anzahl: <INPUT type="text" name="quantity" value="1"> </P>
+  <P>Groesse: </P>
+  <MENU>
+    <LI><INPUT type="radio" name="size" value="8">Klein </LI>
+    <LI><INPUT type="radio" name="size" value="10">Mittel </LI>
+    <LI><INPUT type="radio" name="size" value="12" checked>Gross </LI>
+  </MENU>
+<br></br>
+  <P>Extra Toppings: </P>
+  <P><INPUT type="checkbox" name="top1" value="Pepperoni" checked> Salami
+  <INPUT type="checkbox" name="top2" value="Onions"> Zwiebeln
+  <INPUT type="checkbox" name="top3" value="Mushrooms"> Pilze
+  <INPUT type="checkbox" name="top4" value="Sausage"> Chicken </P>
+  <P><EM>(mehrere extras sind moeglich!)</EM> </P>
+  <P><INPUT type="submit" value="Bestellung aufgeben"><INPUT type="reset"> </P>
+</FORM>
 
 </body>
 </html>
