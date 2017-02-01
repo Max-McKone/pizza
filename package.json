@@ -4,7 +4,18 @@
   "description": "Pizza!",
   "main": "build",
   "scripts": {
-    "test": "mocha"
+    "start": "node build/server",
+    "build-client": "webpack build/client build/client/bundle.js",
+    "build-babel": "babel source -d build",
+    "build-copy": "cp source/client/index.html build/client/index.html",
+    "build": "npm run -s build-babel && npm run -s build-client && npm run -s build-copy",
+    "watch": "nodemon --watch source -e js,json,html,css,sass,png,jpg --exec \"npm run -s build && npm run -s start\""
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-0"
+    ]
   },
   "repository": {
     "type": "git",
@@ -22,7 +33,9 @@
   "devDependencies": {
     "babel-cli": "^6.22.2",
     "babel-preset-es2015": "^6.22.0",
-    "babel-preset-stage-0": "^6.22.0"
+    "babel-preset-stage-0": "^6.22.0",
+    "nodemon": "^1.11.0",
+    "webpack": "^2.2.1"
   },
   "dependencies": {
     "hyperapp": "0.0.5",
