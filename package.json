@@ -1,0 +1,33 @@
+{
+  "name": "pizza",
+  "version": "0.0.0",
+  "description": "Pizza!",
+  "main": "build",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Max-Moolato/pizza.git"
+  },
+  "keywords": [
+    "pizza"
+  ],
+  "author": "S.H.I.E.L.D.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Max-Moolato/pizza/issues"
+  },
+  "homepage": "https://github.com/Max-Moolato/pizza#readme",
+  "devDependencies": {
+    "babel-cli": "^6.22.2",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-stage-0": "^6.22.0"
+  },
+  "dependencies": {
+    "hyperapp": "0.0.5",
+    "spirit": "^0.4.0",
+    "spirit-router": "^0.4.0",
+    "superagent": "^3.4.1"
+  }
+}
