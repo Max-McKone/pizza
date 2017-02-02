@@ -2,113 +2,104 @@
 
 import {app, html} from 'hyperapp'
 
-// endregion
+// components
 
-// region navbar
+import MenuItem from './components/menu-item'
+import Navigation from './components/navigation'
+import ShoppingCartItem from './components/shopping-cart-item'
 
-const nav = ({active, shoppingCartItemCount}) => html`
-<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
-	<div class="container">
-		<button class="navbar-toggler navbar-toggler-right">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item">
-					<a class="nav-link ${active === '/' ? 'active' : ''}" href="/">Home</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link ${active === '/menu' ? 'active' : ''}" href="/menu">Menu</a>
-				</li>
-			</ul>
-			<ul className="navbar-nav">
-				<li className="nav-item">
-					<a href="/cart" className="nav-link ${active === '/cart' ? 'active' : ''}">Shopping Cart <span class="badge badge-pill badge-default">${shoppingCartItemCount}</span></a>
-				</li>
-			</ul>
-		</div>
-	</div>
-</nav>`
+// internal
+
+import actions from './actions'
 
 // endregion
 
-// region ShoppingCartItem
+// region todo
 
-const ShoppingCartItem = ({name, amount, price, id}) => html`
-	<tr>
-		<td>${name}</td>
-		<td>${amount}</td>
-		<td>${price}</td>
-		<td>button</td>
-	</tr>`
-
-// endregion
-
-// region card
-
-const card = ({name, description, add}) => html`
-	<div class="card">
-		<img class="card-img-top" src="https://placekitten.com/128/128" alt="Card image cap"/>
-		<div class="card-block">
-			<h4 class="card-title">${name}</h4>
-			<p class="card-text">${description}</p>
-			<button class="btn btn-success" onclick=${add}>Add to cart</button>
-		</div>
-		<div class="card-footer">
-			<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-		</div>
-	</div>`
+const menuItems = [{
+	name: 'Pizza Hawaii',
+	price: 42
+}, {
+	name: '1337 Pizza',
+	price: 13.37
+}, {
+	name: 'Super Pizza',
+	price: 10
+}]
 
 // endregion
 
-window.addEventListener('load', () => {
+// region render
+
+window.addEventListener('load', () =>
 	app({
 		model: {
 			cart: []
 		},
-    update: {
-      addToCart: ({cart, ...rest}, item) => ({cart: [...cart, item], ...rest})
-    },
+		update: actions,
 		view: {
-			'/': model => html`
+			'/': ({cart}) => html`
 				<div>
-					${nav({active: '/', shoppingCartItemCount: model.cart.length})}
+					${Navigation({
+						active: '/',
+						shoppingCartItemCount: cart.length
+					})}
 					<div class="jumbotron" style=${{borderRadius: 0}}>
 						<div class="container">
-							<h1>Navbar example</h1>
-							<p class="lead">This example is a quick exercise to illustrate how fixed to top navbar works. As you scroll, it will remain fixed to the top of your browser's viewport.</p>
+							<h1>Super Pizza Service 5000</h1>
+							<p class="lead">
+								Lorem Ipsum is the single greatest threat. We are not - we are not keeping up with other websites. I was going to say something extremely rough to Lorem Ipsum, to its family, and I said to myself, "I can't do it. I just can't do it. It's inappropriate. It's not nice." Lorem Ipsum is the single greatest threat. We are not - we are not keeping up with other websites. Look at these words. Are they small words? And he referred to my words - if they're small, something else must be small. I guarantee you there's no problem, I guarantee.
+								This placeholder text is gonna be HUGE. When other websites give you text, they’re not sending the best. They’re not sending you, they’re sending words that have lots of problems and they’re bringing those problems with us. They’re bringing mistakes. They’re bringing misspellings. They’re typists… And some, I assume, are good words. You're telling the enemy exactly what you're going to do. No wonder you've been fighting Lorem Ipsum your entire adult life. I’m the best thing that ever happened to placeholder text. I think the only card she has is the Lorem card.
+							</p>
 						</div>
 					</div>
 				</div>`,
-		'/menu': (model, actions) => html`
-			<div>
-				${nav({active: '/menu', shoppingCartItemCount: model.cart.length})}
-				<div class="container">
-					<div class="card-deck">
-						${card({name: "Pizza 1", description: "blablabla", add: () => actions.addToCart(1)})}
-						${card({name: "Pizza 2", description: "blablabla", add: () => actions.addToCart(2)})}
-						${card({name: "Pizza 3", description: "blablabla", add: () => actions.addToCart(3)})}
+			'/menu': ({cart}, actions) => html`
+				<div>
+					${Navigation({
+						active: '/menu',
+						shoppingCartItemCount: cart.length
+					})}
+					<div class="container">
+						<div class="card-deck">
+							${menuItems.map(item =>
+								MenuItem({
+									...item,
+									add: () => actions.addToCart(item)
+								})
+							)}
+						</div>
 					</div>
-				</div>
-			</div>`,
-		'/cart': model => html`
-			<div>
-				${nav({active: '/cart', shoppingCartItemCount: model.cart.length})}
-				<div class="container">
-					<table class="table">
-					  <thead class="thead-inverse">
-					    <tr>
-					      <th>Name</th>
-					      <th>Amount</th>
-					      <th>Price</th>
-								<th>Action</th>
-					    </tr>
-					  </thead>
-					  <tbody>
-							${ShoppingCartItem({name: "Pizza 1", amount: "1", price: 10, id: 0})}
-					  </tbody>
-					</table>
-				</div>
-			</div>`
-	}})
-})
+				</div>`,
+			'/cart': ({cart}, actions) => html`
+				<div>
+					${Navigation({
+						active: '/cart',
+						shoppingCartItemCount: cart.length
+					})}
+					<div class="container">
+						<table class="table">
+							<thead class="thead-inverse">
+								<tr>
+									<th>Name</th>
+									<th>Amount</th>
+									<th>Price</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								${cart.map((item, index) =>
+									ShoppingCartItem({
+										...item,
+										remove: () => actions.removeFromCart(index)
+									})
+								)}
+							</tbody>
+						</table>
+					</div>
+				</div>`
+		}
+	})
+)
+
+// endregion
