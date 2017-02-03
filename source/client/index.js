@@ -32,7 +32,6 @@ window.addEventListener('load', () =>
 				name: '',
 				phone: '',
 				street: '',
-				streetNumber: '',
 				to: 'branch',
 				zipCode: ''
 			}
@@ -48,7 +47,7 @@ window.addEventListener('load', () =>
 			'/': Main,
 			'/menu': Menu,
 			'/cart': Cart,
-			'/menu/customize/:id': Customize
+			'/menu/:id/customize': Customize
 		}
 	})
 )

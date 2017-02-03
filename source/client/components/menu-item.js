@@ -2,19 +2,24 @@
 
 import {html} from 'hyperapp'
 
+// components
+
+import Price from './price'
+
 // endregion
 
 // region MenuItem
 
-export default ({name, description, id}) => html`
+export default ({description, id, name, price}) => html`
 	<div class="card">
-		<img class="card-img-top img-fluid" src="http://lorempizza.com/380/240/${id}"/>
+		<img class="card-img-top img-fluid" src="http://lorempizza.com/512/256/${id}"/>
 		<div class="card-block">
 			<h4 class="card-title">${name}</h4>
 			<p class="card-text">${description}</p>
 		</div>
-		<div class="card-footer flex-end">
-			<a href="/menu/customize/${id}" class="btn btn-success animate">Add to cart</a>
+		<div class="card-footer flex-between">
+			${Price(price)}
+			<a href="/menu/${id}/customize" class="btn btn-success animate">Customize</a>
 		</div>
 	</div>`
 

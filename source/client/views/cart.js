@@ -6,7 +6,7 @@ import {html} from 'hyperapp'
 
 import Navigation from '../components/navigation'
 import Price from '../components/price'
-import ShoppingCartItem from '../components/shopping-cart-item'
+import CartItem from '../components/cart-item'
 
 // internal
 
@@ -20,7 +20,7 @@ export default ({cart, checkout, isLoading}, {modifyCheckout, placeOrder, remove
 	<div>
 		${Navigation({
 			active: '/cart',
-			shoppingCartItemCount: cart.length
+			CartItemCount: cart.length
 		})}
 		<div class="jumbotron jumbotron-fix">
 			<div class="container">
@@ -60,32 +60,26 @@ export default ({cart, checkout, isLoading}, {modifyCheckout, placeOrder, remove
 							</label>
 						</p>
 						<div class="form-group row">
-							<span class="col-2 col-form-label">Street</span>
-							<div class="col-10">
-								<input class="form-control" oninput=${e => modifyCheckout(['street', e.target.value])} value=${checkout.street} type="text" placeholder="Gubener Straße"/>
+							<span class="col-3 col-form-label">Street</span>
+							<div class="col-9">
+								<input class="form-control" oninput=${e => modifyCheckout(['street', e.target.value])} value=${checkout.street} type="text" placeholder="Gubener Straße 71"/>
 							</div>
 						</div>
 						<div class="form-group row">
-							<span class="col-2 col-form-label">Street Number</span>
-							<div class="col-10">
-								<input class="form-control" oninput=${e => modifyCheckout(['streetNumber', e.target.value])} value=${checkout.streetNumber} type="text" placeholder="71"/>
-							</div>
-						</div>
-						<div class="form-group row">
-							<span class="col-2 col-form-label">ZIP Code</span>
-							<div class="col-10">
+							<span class="col-3 col-form-label">ZIP Code</span>
+							<div class="col-9">
 								<input class="form-control" oninput=${e => modifyCheckout(['zipCode', e.target.value])} value=${checkout.zipCode} type="number" placeholder="83081"/>
 							</div>
 						</div>
 						<div class="form-group row">
-							<span class="col-2 col-form-label">City</span>
-							<div class="col-10">
+							<span class="col-3 col-form-label">City</span>
+							<div class="col-9">
 								<input class="form-control" oninput=${e => modifyCheckout(['city', e.target.value])} value=${checkout.city} type="tel" placeholder="Riedering"/>
 							</div>
 						</div>
 						<div class="form-group row">
-							<span class="col-2 col-form-label">Country</span>
-							<div class="col-10">
+							<span class="col-3 col-form-label">Country</span>
+							<div class="col-9">
 								<input class="form-control" oninput=${e => modifyCheckout(['country', e.target.value])} value=${checkout.country} type="text" placeholder="Germany"/>
 							</div>
 						</div>
@@ -96,7 +90,7 @@ export default ({cart, checkout, isLoading}, {modifyCheckout, placeOrder, remove
 		<div class="container">
 			<div class="card-columns">
 				${cart.map((item, index) =>
-					ShoppingCartItem({
+					CartItem({
 						...item,
 						remove: () => removeFromCart(index)
 					})

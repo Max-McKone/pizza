@@ -11,7 +11,7 @@ import config from '../../config.json'
 // routes
 
 import * as error from './routes/error'
-import {html, js} from './routes/static'
+import {html} from './routes/static'
 
 // endregion
 
@@ -30,12 +30,6 @@ const app = route.define([
 	route.get('/menu', html),
 	route.get('/menu/*', html),
 	route.get('/cart', html),
-
-	// #endregion
-
-	// #region static
-
-	route.get('/main.js', js),
 
 	// #endregion
 

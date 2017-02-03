@@ -22,14 +22,10 @@ const Toppings = (customize, {customizeAddTopping}) => html`
 			.keys(menu.toppings)
 			.map(id => ({...menu.toppings[id], id}))
 			.map(({name, price, id}) => html`
-				<li class="list-group-item">
-					<div class="row">
-						<div class="col-md-4">${name}</div>
-						<div class="col-md-4">${Price(price)}</div>
-						<div class="col-md-4">
-							<button onclick=${() => customizeAddTopping(id)} class="btn btn-sm btn-success">+</button>
-						</div>
-					</div>
+				<li class="list-group-item flex-between">
+					${name}
+					${Price(price)}
+					<button onclick=${() => customizeAddTopping(id)} class="btn btn-sm btn-success">+</button>
 				</li>`)
 		}
 	</ul>`
@@ -114,7 +110,7 @@ export default ({cart, customize}, actions, {id}) => html`
 				justifyContent: 'flex-start',
 				alignItems: 'center'
 			}}>
-				<img class="pizza" src="http://lorempizza.com/192/192/${id}"/>
+				<div class="pizza" style=${{backgroundImage: `url(http://lorempizza.com/512/256/${id})`}}></div>
 				<div style=${{
 					paddingLeft: '32px'
 				}}>

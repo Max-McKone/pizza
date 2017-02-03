@@ -22,10 +22,10 @@
 			"price": 2000,
 			"description": "Pizza Hawaii Description TODO cyka"
 		},
-		"hawaii2": {
-			"name": "Pizza Hawaii 2.0",
+		"dank": {
+			"name": "Dank Pizza",
 			"price": 9001,
-			"description": "Pizza Hawaii 2.0 Description TODO cyka"
+			"description": "Includes ALL the memes. Best with Super Cheese."
 		},
 		"1337": {
 			"name": "1337 Pizza",
