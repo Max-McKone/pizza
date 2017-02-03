@@ -1,19 +1,50 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8">
-		<title>Super Awesome Pizza Service Ultra</title>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+		<title>Dank Pizza</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossOrigin="anonymous"/>
 		<script src="/main.js" charset="utf-8"></script>
 		<style>
-			.animate {
-				transition: all 200ms linear;
+			body {
+				padding-top: 4.5em;
+				margin-bottom: 60px;
 			}
-			.custom-click {
-				transform: scale(1.5) rotate(5deg);
+			.jumbotron {
+				border-radius: 0;
+				margin-top: -1em;
+			}
+			.pizza {
+				border-radius: 50%;
+			}
+			.flex-between {
+				display: flex;
+				justify-content: space-between;
+				align-items: baseline;
+			}
+			html {
+				position: relative;
+				min-height: 100%;
+			}
+			footer {
+				position: absolute;
+				bottom: 0;
+				width: 100%;
+				height: 60px;
+				line-height: 60px;
+				background-color: #f5f5f5;
 			}
 		</style>
 	</head>
-	<body style="padding-top: 4.5rem">
+	<body>
+		<footer>
+			<div class="container flex-between">
+				<span>&copy; 2017 S.H.I.E.L.D.</span>
+				<span>
+					<a href="https://github.com/max-moolato/pizza">GitHub</a>
+				</span>
+			</div>
+		</footer>
 	</body>
 </html>

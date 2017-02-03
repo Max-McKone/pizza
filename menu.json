@@ -1,0 +1,50 @@
+{
+	"sizes": {
+		"sm": {
+			"name": "small",
+			"price": 500,
+			"size": 26
+		},
+		"md": {
+			"name": "large",
+			"price": 700,
+			"size": 30
+		},
+		"xl": {
+			"name": "extra large",
+			"price": 800,
+			"size": 36
+		}
+	},
+	"pizzas": {
+		"hawaii": {
+			"name": "Pizza Hawaii",
+			"price": 2000,
+			"description": "Pizza Hawaii Description TODO cyka"
+		},
+		"1337": {
+			"name": "1337 Pizza",
+			"price": 1337,
+			"description": "1337 Pizza Description TODO cyka"
+		},
+		"super": {
+			"name": "Super Pizza",
+			"price": 4200,
+			"description": "Super Pizza Description TODO cyka"
+		}
+	},
+	"toppings": {
+		"cheese": {
+			"price": 50,
+			"name": "Cheese"
+		},
+		"super-cheese": {
+			"price": 500,
+			"name": "Super Cheese"
+		},
+		"bacon": {
+			"price": 50,
+			"name": "Bacon"
+		}
+	}
+}

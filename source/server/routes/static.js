@@ -7,7 +7,7 @@ import fs from 'fs'
 // region memory
 
 const memory = {
-	js: fs.readFileSync(`${__dirname}/../../client/bundle.js`),
+	js: fs.readFileSync(`${__dirname}/../../client/bundle.js`).toString('utf-8').replace(/\\n(\\t)+/g, ''),
 	html: fs.readFileSync(`${__dirname}/../../client/index.html`)
 }
 

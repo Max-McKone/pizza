@@ -28,6 +28,7 @@ const app = route.define([
 
 	route.get('/', html),
 	route.get('/menu', html),
+	route.get('/menu/*', html),
 	route.get('/cart', html),
 
 	// #endregion
