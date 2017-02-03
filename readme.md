@@ -1,6 +1,6 @@
 # Pizza
 
-> Pizza Lieferservice Webseite
+> Pizza everywhere
 
 ## Install
 
