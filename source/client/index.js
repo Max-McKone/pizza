@@ -5,6 +5,7 @@ import {app, html} from 'hyperapp'
 // internal
 
 import actions from './actions'
+import effects from './effects'
 
 // views
 
@@ -24,11 +25,24 @@ window.addEventListener('load', () =>
 			customize: {
 				toppings: {},
 				size: 'xl'
+			},
+			checkout: {
+				city: '',
+				country: '',
+				name: '',
+				phone: '',
+				street: '',
+				streetNumber: '',
+				to: 'branch',
+				zipCode: ''
 			}
-		}, JSON.parse(localStorage.getItem('state')) || {}),
+		}, JSON.parse(localStorage.getItem('state')) || {}, {
+			isLoading: false
+		}),
 		hooks: {
 			onUpdate: (last, model) => localStorage.setItem('state', JSON.stringify(model))
 		},
+		effects,
 		update: actions,
 		view: {
 			'/': Main,

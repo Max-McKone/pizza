@@ -108,7 +108,7 @@ export default ({cart, customize}, actions, {id}) => html`
 			active: '/menu',
 			shoppingCartItemCount: cart.length
 		})}
-		<div class="jumbotron">
+		<div class="jumbotron jumbotron-fix">
 			<div class="container" style=${{
 				display: 'flex',
 				justifyContent: 'flex-start',

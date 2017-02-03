@@ -45,7 +45,26 @@ export default {
 			},
 			...rest
 		}
-	}
+	},
+	modifyCheckout: ({checkout, ...rest}, [key, value]) => ({
+		checkout: {
+			...checkout,
+			[key]: value
+		},
+		...rest
+	}),
+	orderStarted: ({isLoading, ...rest}) => ({
+		isLoading: true,
+		...rest
+	}),
+	orderSuccessful: ({isLoading, ...rest}) => ({
+		isLoading: false,
+		...rest
+	}),
+	orderFailed: ({isLoading, ...rest}) => ({
+		isLoading: false,
+		...rest
+	})
 }
 
 // endregion

@@ -22,6 +22,11 @@
 			"price": 2000,
 			"description": "Pizza Hawaii Description TODO cyka"
 		},
+		"hawaii2": {
+			"name": "Pizza Hawaii 2.0",
+			"price": 9001,
+			"description": "Pizza Hawaii 2.0 Description TODO cyka"
+		},
 		"1337": {
 			"name": "1337 Pizza",
 			"price": 1337,

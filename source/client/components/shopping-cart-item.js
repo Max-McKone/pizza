@@ -16,9 +16,9 @@ import pizzaPrice from '../utilities/pizza-price'
 // region ShoppingCartItem
 
 export default ({pizza, size, toppings, remove}) => html`
-	<div className="card">
+	<div class="card">
 		<img class="card-img-top img-fluid" src="http://lorempizza.com/380/240/${pizza}"/>
-		<div className="card-block">
+		<div class="card-block">
 			<h3>${menu.pizzas[pizza].name}</h3>
 			<p>${menu.pizzas[pizza].description}</p>
 			<ul class="list-group">
@@ -41,7 +41,7 @@ export default ({pizza, size, toppings, remove}) => html`
 					`)}
 			</ul>
 		</div>
-		<div className="card-footer flex-between">
+		<div class="card-footer flex-between">
 			${Price(pizzaPrice({pizza, size, toppings}))}
 			<button class="btn btn-danger btn-sm" onclick=${remove}>remove</button>
 		</div>

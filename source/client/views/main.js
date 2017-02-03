@@ -16,7 +16,7 @@ export default ({cart}) => html`
 			active: '/',
 			shoppingCartItemCount: cart.length
 		})}
-		<div class="jumbotron" style=${{borderRadius: 0}}>
+		<div class="jumbotron jumbotron-fix">
 			<div class="container">
 				<h1>Super Pizza Service 5000</h1>
 				<p class="lead">
