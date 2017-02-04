@@ -16,12 +16,12 @@ memory.html = fs.readFileSync(`${__dirname}/../../client/index.html`).toString('
 
 // region serve
 
-export const html = () => ({
+export const html = {
 	status: 200,
 	body: memory.html,
 	headers: {
 		'Content-Type': 'text/html; charset=utf-8'
 	}
-})
+}
 
 // endregion

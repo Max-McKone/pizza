@@ -20,7 +20,7 @@ export default ({pizza, size, toppings, remove}) => html`
 		<div class="card-header">
 			${menu.pizzas[pizza].name}
 		</div>
-		<img class="card-img-top img-fluid" src="http://lorempizza.com/512/256/${pizza}"/>
+		<img class="card-img img-fluid" src="http://lorempizza.com/512/256/${pizza}"/>
 		<ul class="list-group list-group-flush">
 			<li class="list-group-item flex-between">
 				<div>
