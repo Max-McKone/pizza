@@ -20,6 +20,11 @@ export default ({active, shoppingCartItemCount}) => html`
 					<li class="nav-item">
 						<a class="nav-link ${active === '/menu' ? 'active' : ''}" href="/menu">Menu</a>
 					</li>
+					${active === '/order' ? html`
+						<li class="nav-item">
+							<a class="nav-link active" href="/order">Order</a>
+						</li>
+					` : ''}
 				</ul>
 				<ul className="navbar-nav">
 					<li className="nav-item">

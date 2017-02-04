@@ -57,10 +57,11 @@ export default {
 		isLoading: true,
 		...rest
 	}),
-	orderSuccessful: ({isLoading, cart, ...rest}) => ({
+	orderSuccessful: (state, {body}) => ({
+		...state,
 		cart: [],
-		isLoading: false,
-		...rest
+		order: body,
+		isLoading: false
 	}),
 	orderFailed: ({isLoading, ...rest}) => {
 		window.alert('FAILED')

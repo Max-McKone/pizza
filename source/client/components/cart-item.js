@@ -42,7 +42,9 @@ export default ({pizza, size, toppings, remove}) => html`
 		</ul>
 		<div class="card-footer flex-between">
 			${Price(pizzaPrice({pizza, size, toppings}))}
-			<button class="btn btn-danger btn-sm" onclick=${remove}>remove</button>
+			${remove ? html`
+				<button class="btn btn-danger btn-sm" onclick=${remove}>remove</button>
+			` : ''}
 		</div>
 	</div>`
 

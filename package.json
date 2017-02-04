@@ -5,9 +5,13 @@
   "main": "build",
   "scripts": {
     "start": "node build/server",
-    "build-client": "webpack -p --module-bind 'json=json-loader' build/client build/client/bundle.js",
+    "build-client": "npm run -s build-client-user && npm run -s build-client-cook",
+    "build-client-user": "webpack -p --module-bind 'json=json-loader' build/client/entry/user.js build/client/bundle-user.js",
+    "build-client-cook": "webpack -p --module-bind 'json=json-loader' build/client/entry/cook.js build/client/bundle-cook.js",
     "build-babel": "babel source -d build",
-    "build-copy": "cp source/client/index.html build/client/index.html",
+    "build-copy": "npm run -s build-copy-user && npm run -s build-copy-cook",
+    "build-copy-user": "cp source/client/user.html build/client/user.html",
+    "build-copy-cook": "cp source/client/cook.html build/client/cook.html",
     "build": "npm run -s build-babel && npm run -s build-client && npm run -s build-copy",
     "watch": "nodemon --watch package.json --watch menu.json --watch source -e js,json,html,css,sass,png,jpg --exec \"npm run -s build && npm run -s start\""
   },

@@ -7,18 +7,28 @@ import fs from 'fs'
 // region memory
 
 const memory = {
-	js: fs.readFileSync(`${__dirname}/../../client/bundle.js`).toString('utf-8').replace(/\\n(\\t)+/g, ''),
+	jsCook: fs.readFileSync(`${__dirname}/../../client/bundle-cook.js`).toString('utf-8').replace(/\\n(\\t)+/g, ''),
+	jsUser: fs.readFileSync(`${__dirname}/../../client/bundle-user.js`).toString('utf-8').replace(/\\n(\\t)+/g, ''),
 	css: fs.readFileSync(`${__dirname}/../../../node_modules/bootstrap/dist/css/bootstrap.min.css`)
 }
-memory.html = fs.readFileSync(`${__dirname}/../../client/index.html`).toString('utf-8').replace('/*inject-script*/', memory.js).replace('/*inject-style*/', memory.css)
+memory.htmlCook = fs.readFileSync(`${__dirname}/../../client/cook.html`).toString('utf-8').replace('/*inject-script*/', memory.jsCook).replace('/*inject-style*/', memory.css)
+memory.htmlUser = fs.readFileSync(`${__dirname}/../../client/user.html`).toString('utf-8').replace('/*inject-script*/', memory.jsUser).replace('/*inject-style*/', memory.css)
 
 // endregion
 
 // region serve
 
-export const html = {
+export const htmlCook = {
 	status: 200,
-	body: memory.html,
+	body: memory.htmlCook,
+	headers: {
+		'Content-Type': 'text/html; charset=utf-8'
+	}
+}
+
+export const htmlUser = {
+	status: 200,
+	body: memory.htmlUser,
 	headers: {
 		'Content-Type': 'text/html; charset=utf-8'
 	}

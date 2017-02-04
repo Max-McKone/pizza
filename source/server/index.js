@@ -12,7 +12,7 @@ import config from '../../config.json'
 // routes
 
 import * as error from './routes/error'
-import {html} from './routes/static'
+import {htmlCook, htmlUser} from './routes/static'
 import saveOrder from './routes/save-order'
 
 // endregion
@@ -26,22 +26,29 @@ const {listen: {host, port}, prefix} = config
 // region routes
 
 const app = route.define([
-	// #region app
+	// #region user
 
-	route.get('/', html),
-	route.get('/menu', html),
-	route.get('/menu/*', html),
-	route.get('/cart', html),
+	route.get('/', htmlUser),
+	route.get('/menu', htmlUser),
+	route.get('/menu/*', htmlUser),
+	route.get('/cart', htmlUser),
+	route.get('/order', htmlUser),
 
 	// #endregion
 
-	// region API
+	// #region cook
+
+	route.get('/cook*', htmlCook),
+
+	// #endregion
+
+	// #region API
 
 	route.wrap(route.post('/api/v1/order', ['body'], saveOrder), [body]),
 
-	// endregion
+	// #endregion
 
-	// region#icons
+	// #region icons
 
 	// route.get('/favicon.ico', favicon),
 
