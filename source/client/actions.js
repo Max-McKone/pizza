@@ -57,14 +57,20 @@ export default {
 		isLoading: true,
 		...rest
 	}),
-	orderSuccessful: ({isLoading, ...rest}) => ({
+	orderSuccessful: ({isLoading, cart, ...rest}) => ({
+		cart: [],
 		isLoading: false,
 		...rest
 	}),
-	orderFailed: ({isLoading, ...rest}) => ({
-		isLoading: false,
-		...rest
-	})
+	orderFailed: ({isLoading, ...rest}) => {
+		window.alert('FAILED')
+		return {
+			isLoading: false,
+			...rest
+		}
+
+	}
+
 }
 
 // endregion

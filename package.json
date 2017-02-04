@@ -41,7 +41,9 @@
   "dependencies": {
     "bootstrap": "^4.0.0-alpha.6",
     "hyperapp": "0.0.7",
+    "nedb": "^1.8.0",
     "spirit": "^0.4.0",
+    "spirit-body": "0.0.3",
     "spirit-router": "^0.4.0",
     "superagent": "^3.4.1"
   }

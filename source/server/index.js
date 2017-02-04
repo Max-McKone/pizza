@@ -1,8 +1,9 @@
 // region import
 
+import body from 'spirit-body'
 import http from 'http'
-import spirit from 'spirit'
 import route from 'spirit-router'
+import spirit from 'spirit'
 
 // internal
 
@@ -12,6 +13,7 @@ import config from '../../config.json'
 
 import * as error from './routes/error'
 import {html} from './routes/static'
+import saveOrder from './routes/save-order'
 
 // endregion
 
@@ -32,6 +34,12 @@ const app = route.define([
 	route.get('/cart', html),
 
 	// #endregion
+
+	// region API
+
+	route.wrap(route.post('/api/v1/order', ['body'], saveOrder), [body]),
+
+	// endregion
 
 	// region#icons
 
