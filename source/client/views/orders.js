@@ -1,5 +1,6 @@
 // region import
 
+import timespan from 'readable-timespan'
 import {html} from 'hyperapp'
 
 // commponents
@@ -10,13 +11,16 @@ import Address from '../components/address'
 
 // region Order
 
-const Order = ({checkout, _id, status, setStatus}) => html`
+const Order = ({checkout, _id, status, setStatus, time}) => html`
 	<tr>
 		<td>
 			<a href="/cook/detail/${_id}">${_id}</a>
 		</td>
 		<td>
 			${Address(checkout)}
+		</td>
+		<td>
+			<span className="badge badge-pill badge-default">${timespan.parse(Date.now() - time)} ago</span>
 		</td>
 		<td>
 			${status === 'baking' ? html`
@@ -44,6 +48,7 @@ export default ({orders}, {setStatus}) => html`
 				<thead>
 					<th>#</th>
 					<th>Address</th>
+					<th>Time</th>
 					<th>Actions</th>
 				</thead>
 				<tbody>
@@ -61,6 +66,7 @@ export default ({orders}, {setStatus}) => html`
 				<thead>
 					<th>#</th>
 					<th>Address</th>
+					<th>Time</th>
 					<th>Actions</th>
 				</thead>
 				<tbody>

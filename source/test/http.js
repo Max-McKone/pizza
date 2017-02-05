@@ -13,7 +13,7 @@ import server from '../server'
 // region serve
 
 describe('blackbox-serve', () => {
-	describe('serves user-site', () => {
+	describe('serves /', () => {
 		it ('has status 200', async () => {
 			const response = await request
 				.get('http://127.0.0.1:8080')
@@ -289,7 +289,12 @@ describe('blackbox-database', () => {
 				.send(order)
 
 			assert.equal(response.status, 200)
-			assert.deepEqual(response.body, {...order, _id: response.body._id, status: 'baking'})
+			assert.deepEqual(response.body, {
+				...order,
+				_id: response.body._id,
+				status: 'baking',
+				time: response.body.time
+			})
 			assert.equal(response.headers['content-type'], 'application/json; charset=utf-8')
 		})
 	})

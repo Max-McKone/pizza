@@ -13,8 +13,8 @@
     "build-copy-user": "cp source/client/user.html build/client/user.html",
     "build-copy-cook": "cp source/client/cook.html build/client/cook.html",
     "build": "npm run -s build-babel && npm run -s build-client && npm run -s build-copy",
-    "test": "mocha build/test/http && mocha build/test/socket && mocha build/test/spirit",
-    "watch-test": "nodemon --watch source/test -e js --exec \"babel source/test -d build/test && npm run -s test\"",
+    "test": "rm -f orders.nedb && mocha build/test/http --timeout 30000 && mocha build/test/socket --timeout 30000 && mocha build/test/spirit --timeout 30000",
+    "watch-test": "nodemon --watch source -e js --exec \"npm run -s build && npm run -s test\"",
     "watch": "nodemon --watch package.json --watch menu.json --watch source -e js,json,html,css,sass,png,jpg --exec \"npm run -s build && npm run -s start\""
   },
   "babel": {
@@ -50,6 +50,7 @@
     "bootstrap": "^4.0.0-alpha.6",
     "hyperapp": "0.0.9",
     "nedb": "^1.8.0",
+    "readable-timespan": "^1.2.0",
     "socket.io": "^1.7.2",
     "socket.io-client": "^1.7.2",
     "spirit": "^0.4.0",

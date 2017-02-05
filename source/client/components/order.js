@@ -1,5 +1,6 @@
 // region import
 
+import timespan from 'readable-timespan'
 import {html} from 'hyperapp'
 
 // components
@@ -17,11 +18,11 @@ import pizzaPrice from '../utilities/pizza-price'
 
 // region Cart
 
-export default ({cart, checkout, status}) => html`
+export default ({cart, checkout, status, time}) => html`
 	<div>
 		<div class="jumbotron jumbotron-fix">
 			<div class="container">
-				<h1>Order <span class="badge badge-default">${status}</span></h1>
+				<h1>Order <span class="badge badge-pill badge-info">${status}</span> <span className="badge badge-pill badge-default">${timespan.parse(Date.now() - time)} ago</span></h1>
 				${Address(checkout)}
 			</div>
 		</div>

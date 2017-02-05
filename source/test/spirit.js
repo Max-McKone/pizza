@@ -169,7 +169,12 @@ describe('whitebox-database', () => {
 				const decoded = JSON.parse(response.body)
 
 				assert.equal(response.status, 200)
-				assert.deepEqual(decoded, {...order, _id: decoded._id, status: 'baking'})
+				assert.deepEqual(decoded, {
+					...order,
+					_id: decoded._id,
+					status: 'baking',
+					time: decoded.time
+				})
 				assert.equal(response.headers['Content-Type'], 'application/json; charset=utf-8')
 			} catch (error) {
 				assert.fail(error)

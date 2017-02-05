@@ -12,7 +12,8 @@ export default body => new Promise((resolve, reject) => {
 
 	const order = {
 		...JSON.parse(body),
-		status: 'baking'
+		status: 'baking',
+		time: Date.now()
 	}
 
 	// missing address?
@@ -31,7 +32,7 @@ export default body => new Promise((resolve, reject) => {
 	// invalid
 	if (
 		!order.checkout
-		|| order.checkout.to !== 'branch'
+		|| !['branch', 'custom'].includes(order.checkout.to)
 		|| !order.checkout.name
 		|| !order.checkout.phone
 	) return resolve(badRequest)

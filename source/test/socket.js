@@ -14,8 +14,8 @@ import server from '../server'
 // region update
 
 describe('blackbox-websocket-live-update', () => {
-	const io = ssio('http://127.0.0.1:8080')
 	it('emits an update upon connecting', async () => {
+		const io = ssio('http://127.0.0.1:8080')
 		const result = await new Promise((resolve, reject) =>
 			io.on('update', resolve)
 		)
@@ -42,8 +42,8 @@ describe('blackbox-websocket-live-update', () => {
 // region status
 
 describe('blackbox-websocket-change-status', () => {
-	const io = ssio('http://127.0.0.1:8080')
 	it('emits an update after changing status', async () => {
+		const io = ssio('http://127.0.0.1:8080')
 		const ignore = await new Promise((resolve, reject) =>
 			io.on('update', resolve)
 		)
@@ -70,6 +70,7 @@ describe('blackbox-websocket-change-status', () => {
 			}
 			assert.ok(order.checkout.to === 'custom' || order.checkout.to === 'branch')
 		})
+		io.disconnect()
 	})
 })
 
@@ -78,8 +79,8 @@ describe('blackbox-websocket-change-status', () => {
 // region order
 
 describe('blackbox-websocket-save-order', () => {
-	const io = ssio('http://127.0.0.1:8080')
 	it('emits an update after saving order', async () => {
+		const io = ssio('http://127.0.0.1:8080')
 		const ignore = await new Promise((resolve, reject) =>
 			io.on('update', resolve)
 		)
@@ -123,6 +124,7 @@ describe('blackbox-websocket-save-order', () => {
 		const matches = result.filter(({_id}) => _id === httpResult.body._id)
 
 		assert.ok(matches.length === 1)
+		io.disconnect()
 	})
 })
 
