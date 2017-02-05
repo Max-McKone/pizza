@@ -10,11 +10,12 @@ import Navigation from '../components/navigation'
 
 // region Main
 
-export default ({cart}) => html`
+export default ({cart, order}) => html`
 	<div>
 		${Navigation({
 			active: '/',
-			shoppingCartItemCount: cart.length
+			shoppingCartItemCount: cart.length,
+			order
 		})}
 		<div class="jumbotron jumbotron-fix">
 			<div class="container">

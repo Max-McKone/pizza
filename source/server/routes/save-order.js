@@ -12,7 +12,7 @@ export default body => new Promise((resolve, reject) => {
 
 	const order = {
 		...JSON.parse(body),
-		status: 'baking',
+		status: 'new',
 		time: Date.now()
 	}
 

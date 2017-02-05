@@ -1,7 +1,7 @@
 // region import
 
-import {app, html} from 'hyperapp'
 import ssio from 'socket.io-client'
+import {app, html} from 'hyperapp'
 
 // views
 
@@ -27,7 +27,8 @@ app({
 		update: (state, orders) => ({
 			...state,
 			orders
-		})
+		}),
+		tick: s => s
 	},
 	subs: [
 		(_, actions) => {
@@ -35,7 +36,9 @@ app({
 			actions.setSocketIO(io)
 			io.on('connect', () => console.info('connected'))
 			io.on('update', actions.update)
-		}
+		},
+		(_, actions) =>
+			setInterval(() => actions.tick(), 1000)
 	],
 	view: {
 		'/cook': Orders,
@@ -46,15 +49,16 @@ app({
 				<div>Not Found</div>
 			`
 
-			if (order.checkout.to === 'branch') order.checkout = {
-				city: 'Riedering',
-				country: 'Germany',
-				name: 'Dank Pizza #42',
-				street: 'Gubener Straße 71',
-				zipCode: '83081'
-			}
-
-			return Order(order)
+			return Order({
+				...order,
+				checkout: {
+					street: 'Gubener Straße 71',
+					zipCode: '83081',
+					city: 'Riedering',
+					country: 'Germany',
+					...order.checkout
+				}
+			})
 		}
 	},
 	root: document.getElementById('root')

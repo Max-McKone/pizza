@@ -292,7 +292,7 @@ describe('blackbox-database', () => {
 			assert.deepEqual(response.body, {
 				...order,
 				_id: response.body._id,
-				status: 'baking',
+				status: 'new',
 				time: response.body.time
 			})
 			assert.equal(response.headers['content-type'], 'application/json; charset=utf-8')

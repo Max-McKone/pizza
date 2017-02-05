@@ -103,11 +103,12 @@ const PriceTable = ({pizza, size, toppings, secondHalf}, {addToCart, customizeRe
 
 // region Customize
 
-export default ({cart, customize}, actions, {pizza}) => html`
+export default ({cart, order, customize}, actions, {pizza}) => html`
 	<div>
 		${Navigation({
 			active: '/menu',
-			shoppingCartItemCount: cart.length
+			shoppingCartItemCount: cart.length,
+			order
 		})}
 		<div class="jumbotron jumbotron-fix">
 			<div class="container" style=${{

@@ -15,11 +15,12 @@ import menu from '../../../menu'
 
 // region Menu
 
-export default ({cart}, actions) => html`
+export default ({cart, order}, actions) => html`
 	<div>
 		${Navigation({
 			active: '/menu',
-			shoppingCartItemCount: cart.length
+			shoppingCartItemCount: cart.length,
+			order
 		})}
 		<div class="jumbotron jumbotron-fix">
 			<div class="container">

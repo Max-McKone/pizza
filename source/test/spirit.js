@@ -172,7 +172,7 @@ describe('whitebox-database', () => {
 				assert.deepEqual(decoded, {
 					...order,
 					_id: decoded._id,
-					status: 'baking',
+					status: 'new',
 					time: decoded.time
 				})
 				assert.equal(response.headers['Content-Type'], 'application/json; charset=utf-8')

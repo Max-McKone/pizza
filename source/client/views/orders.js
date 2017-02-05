@@ -59,6 +59,13 @@ export default ({orders}, {setStatus}) => html`
 						.filter(({status}) => status === 'new')
 						.map(order => Order({
 							...order,
+							checkout: {
+								street: 'Gubener Straße 71',
+								zipCode: '83081',
+								city: 'Riedering',
+								country: 'Germany',
+								...order.checkout
+							},
 							setStatus
 						})
 					)}
@@ -77,6 +84,13 @@ export default ({orders}, {setStatus}) => html`
 							.filter(({status}) => status === 'baking')
 							.map(order => Order({
 								...order,
+								checkout: {
+									street: 'Gubener Straße 71',
+									zipCode: '83081',
+									city: 'Riedering',
+									country: 'Germany',
+									...order.checkout
+								},
 								setStatus
 							})
 						)}
@@ -95,6 +109,13 @@ export default ({orders}, {setStatus}) => html`
 						.filter(({status}) => status === 'finished')
 						.map(order => Order({
 							...order,
+							checkout: {
+								street: 'Gubener Straße 71',
+								zipCode: '83081',
+								city: 'Riedering',
+								country: 'Germany',
+								...order.checkout
+							},
 							setStatus
 						})
 					)}

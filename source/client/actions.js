@@ -97,9 +97,18 @@ export default {
 			...state,
 			isLoading: false
 		}
-
-	}
-
+	},
+	setSocketIO: (state, io) => ({
+		...state,
+		io
+	}),
+	liveData: (state, orders) => ({
+		...state,
+		order: orders.filter(({_id}) => _id === state.order._id)[0]
+			? orders.filter(({_id}) => _id === state.order._id)[0]
+			: state.order
+	}),
+	tick: s => s
 }
 
 // endregion

@@ -17,11 +17,12 @@ import pizzaPrice from '../utilities/pizza-price'
 
 // region Cart
 
-export default ({cart, checkout, isLoading}, {modifyCheckout, placeOrder, removeFromCart}) => html`
+export default ({cart, order, checkout, isLoading}, {modifyCheckout, placeOrder, removeFromCart}) => html`
 	<div>
 		${Navigation({
 			active: '/cart',
-			shoppingCartItemCount: cart.length
+			shoppingCartItemCount: cart.length,
+			order
 		})}
 		<div class="jumbotron jumbotron-fix">
 			<div class="container">
@@ -51,7 +52,8 @@ export default ({cart, checkout, isLoading}, {modifyCheckout, placeOrder, remove
 							country: 'Germany',
 							name: 'Dank Pizza #42',
 							street: 'Gubener Straße 71',
-							zipCode: '83081'
+							zipCode: '83081',
+							phone: '+498032919067'
 						})}
 					</div>
 					<div className="col-md-6">
