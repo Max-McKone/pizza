@@ -20,7 +20,7 @@
 		"hawaii": {
 			"name": "Pizza Hawaii",
 			"price": 2000,
-			"description": "Pizza Hawaii Description TODO cyka"
+			"description": "not cultural appropriation!"
 		},
 		"dank": {
 			"name": "Dank Pizza",
@@ -30,12 +30,17 @@
 		"1337": {
 			"name": "1337 Pizza",
 			"price": 1337,
-			"description": "1337 Pizza Description TODO cyka"
+			"description": "much cheese so 1337"
 		},
 		"super": {
 			"name": "Super Pizza",
 			"price": 4200,
-			"description": "Super Pizza Description TODO cyka"
+			"description": "This Pizza is Super!"
+		},
+		"ultra": {
+			"name": "Ultra Pizza",
+			"price": 5000,
+			"description": "This Pizza is so ultra!"
 		}
 	},
 	"toppings": {
@@ -50,6 +55,14 @@
 		"bacon": {
 			"price": 50,
 			"name": "Bacon"
+		},
+		"paprica": {
+			"price": 100,
+			"name": "Paprica"
+		},
+		"spices": {
+			"price": 420,
+			"name": "Some spices"
 		}
 	}
 }
