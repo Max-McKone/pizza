@@ -34,12 +34,12 @@ export default ({cart}) => html`
 				<tbody>
 					<tr>
 						<td>Benjamin Braun</td>
-						<td>T</td>
+						<td>561952</td>
 						<td><a href="https://github.com/fattomcat">@fattomcat</a></td>
 					</tr>
 					<tr>
-						<td>Max</td>
-						<td>T</td>
+						<td>Maximilian Kraska McKone</td>
+						<td>573616</td>
 						<td><a href="https://github.com/max-moolato">@max-moolato</a></td>
 					</tr>
 					<tr>

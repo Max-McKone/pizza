@@ -56,7 +56,8 @@ app({
 
 			return Order(order)
 		}
-	}
+	},
+	root: document.getElementById('root')
 })
 
 // endregion

@@ -23,7 +23,10 @@ export default {
 		request
 			.post('/api/v1/order')
 			.send(data)
-			.then(actions.orderSuccessful)
+			.then(result => {
+				actions.orderSuccessful(result)
+				actions.setLocation('/order')
+			})
 			.catch(actions.orderFailed)
 	}
 }

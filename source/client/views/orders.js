@@ -23,11 +23,14 @@ const Order = ({checkout, _id, status, setStatus, time}) => html`
 			<span className="badge badge-pill badge-default">${timespan.parse(Date.now() - time)} ago</span>
 		</td>
 		<td>
-			${status === 'baking' ? html`
-				<button class="btn btn-success" onclick=${() => setStatus({_id, status: 'finished'})}>Finish</button>
-			` : html`
-				<button class="btn btn-success" onclick=${() => setStatus({_id, status: 'baking'})}>Undo Finish</button>
-			`}
+			<div className="btn-group">
+				${['new', 'baking', 'finished']
+					.filter(item => item !== status)
+					.map(status => html`
+						<button class="btn btn-success" onclick=${() => setStatus({_id, status})}>Set To ${status.charAt(0).toUpperCase() + status.slice(1)}</button>
+					`)
+				}
+			</div>
 		</td>
 	</tr>`
 
@@ -43,7 +46,7 @@ export default ({orders}, {setStatus}) => html`
 			</div>
 		</div>
 		<div class="container">
-			<h3>Baking</h3>
+			<h3>New</h3>
 			<table class="table">
 				<thead>
 					<th>#</th>
@@ -53,7 +56,7 @@ export default ({orders}, {setStatus}) => html`
 				</thead>
 				<tbody>
 					${orders
-						.filter(({status}) => status === 'baking')
+						.filter(({status}) => status === 'new')
 						.map(order => Order({
 							...order,
 							setStatus
@@ -61,6 +64,24 @@ export default ({orders}, {setStatus}) => html`
 					)}
 				</tbody>
 			</table>
+				<h3>Baking</h3>
+				<table class="table">
+					<thead>
+						<th>#</th>
+						<th>Address</th>
+						<th>Time</th>
+						<th>Actions</th>
+					</thead>
+					<tbody>
+						${orders
+							.filter(({status}) => status === 'baking')
+							.map(order => Order({
+								...order,
+								setStatus
+							})
+						)}
+					</tbody>
+				</table>
 			<h3>Finished</h3>
 			<table class="table">
 				<thead>
@@ -71,7 +92,7 @@ export default ({orders}, {setStatus}) => html`
 				</thead>
 				<tbody>
 					${orders
-						.filter(({status}) => status !== 'baking')
+						.filter(({status}) => status === 'finished')
 						.map(order => Order({
 							...order,
 							setStatus

@@ -32,7 +32,7 @@ export default body => new Promise((resolve, reject) => {
 	// invalid
 	if (
 		!order.checkout
-		|| !['branch', 'custom'].includes(order.checkout.to)
+		|| !['branch', 'custom', 'new'].includes(order.checkout.to)
 		|| !order.checkout.name
 		|| !order.checkout.phone
 	) return resolve(badRequest)

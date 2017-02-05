@@ -54,7 +54,8 @@ window.addEventListener('load', () =>
 			'/cart': Cart,
 			'/menu/:pizza/customize': Customize,
 			'/order': Order
-		}
+		},
+		root: document.getElementById('root')
 	})
 )
 
