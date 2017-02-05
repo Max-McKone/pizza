@@ -33,7 +33,87 @@ describe('blackbox-serve', () => {
 		})
 	})
 
-	describe('serves cook-site', async () => {
+	describe('serves /cart', () => {
+		it ('has status 200', async () => {
+			const response = await request
+				.get('http://127.0.0.1:8080/cart')
+			assert.equal(response.status, 200)
+		})
+
+		it ('has a body', async () => {
+			const response = await request
+				.get('http://127.0.0.1:8080/cart')
+			assert.ok(response.text.length >= 1024)
+		})
+
+		it ('sets the content-type', async () => {
+			const response = await request
+				.get('http://127.0.0.1:8080/cart')
+			assert.equal(response.headers['content-type'], 'text/html; charset=utf-8')
+		})
+	})
+
+	describe('serves /menu', () => {
+		it ('has status 200', async () => {
+			const response = await request
+				.get('http://127.0.0.1:8080/menu')
+			assert.equal(response.status, 200)
+		})
+
+		it ('has a body', async () => {
+			const response = await request
+				.get('http://127.0.0.1:8080/menu')
+			assert.ok(response.text.length >= 1024)
+		})
+
+		it ('sets the content-type', async () => {
+			const response = await request
+				.get('http://127.0.0.1:8080/menu')
+			assert.equal(response.headers['content-type'], 'text/html; charset=utf-8')
+		})
+	})
+
+	describe('serves /menu/:pizza/customize', () => {
+		it ('has status 200', async () => {
+			const response = await request
+				.get('http://127.0.0.1:8080/menu/asdjfkla/customize')
+			assert.equal(response.status, 200)
+		})
+
+		it ('has a body', async () => {
+			const response = await request
+				.get('http://127.0.0.1:8080/menu/asdjfkla/customize')
+			assert.ok(response.text.length >= 1024)
+		})
+
+		it ('sets the content-type', async () => {
+			const response = await request
+				.get('http://127.0.0.1:8080/menu/asdjfkla/customize')
+			assert.equal(response.headers['content-type'], 'text/html; charset=utf-8')
+		})
+	})
+
+	describe('serves /order', () => {
+		it ('has status 200', async () => {
+			const response = await request
+				.get('http://127.0.0.1:8080/order')
+			assert.equal(response.status, 200)
+		})
+
+		it ('has a body', async () => {
+			const response = await request
+				.get('http://127.0.0.1:8080/order')
+			assert.ok(response.text.length >= 1024)
+		})
+
+		it ('sets the content-type', async () => {
+			const response = await request
+				.get('http://127.0.0.1:8080/order')
+			assert.equal(response.headers['content-type'], 'text/html; charset=utf-8')
+		})
+	})
+
+	describe('serves /cook', async () => {
 		it ('has status 200', async () => {
 			const response = await request
 				.get('http://127.0.0.1:8080/cook')
@@ -49,6 +129,26 @@ describe('blackbox-serve', () => {
 		it ('sets the content-type', async () => {
 			const response = await request
 				.get('http://127.0.0.1:8080/cook')
+			assert.equal(response.headers['content-type'], 'text/html; charset=utf-8')
+		})
+	})
+
+	describe('serves /cook/detail/:order', () => {
+		it ('has status 200', async () => {
+			const response = await request
+				.get('http://127.0.0.1:8080/cook/detail/asdjflkasdfhjiuhg')
+			assert.equal(response.status, 200)
+		})
+
+		it ('has a body', async () => {
+			const response = await request
+				.get('http://127.0.0.1:8080/cook/detail/asdjflkasdfhjiuhg')
+			assert.ok(response.text.length >= 1024)
+		})
+
+		it ('sets the content-type', async () => {
+			const response = await request
+				.get('http://127.0.0.1:8080/cook/detail/asdjflkasdfhjiuhg')
 			assert.equal(response.headers['content-type'], 'text/html; charset=utf-8')
 		})
 	})

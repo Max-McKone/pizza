@@ -13,7 +13,7 @@
     "build-copy-user": "cp source/client/user.html build/client/user.html",
     "build-copy-cook": "cp source/client/cook.html build/client/cook.html",
     "build": "npm run -s build-babel && npm run -s build-client && npm run -s build-copy",
-    "test": "mocha build/test",
+    "test": "mocha build/test/http && mocha build/test/socket && mocha build/test/spirit",
     "watch-test": "nodemon --watch source/test -e js --exec \"babel source/test -d build/test && npm run -s test\"",
     "watch": "nodemon --watch package.json --watch menu.json --watch source -e js,json,html,css,sass,png,jpg --exec \"npm run -s build && npm run -s start\""
   },
