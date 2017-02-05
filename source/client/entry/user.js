@@ -25,7 +25,8 @@ window.addEventListener('load', () =>
 			cart: [],
 			customize: {
 				toppings: {},
-				size: 'xl'
+				size: 'xl',
+				secondHalf: 'none'
 			},
 			checkout: {
 				city: '',
@@ -51,7 +52,7 @@ window.addEventListener('load', () =>
 			'/': Main,
 			'/menu': Menu,
 			'/cart': Cart,
-			'/menu/:id/customize': Customize,
+			'/menu/:pizza/customize': Customize,
 			'/order': Order
 		}
 	})

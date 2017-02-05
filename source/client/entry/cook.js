@@ -5,6 +5,7 @@ import ssio from 'socket.io-client'
 
 // views
 
+import Order from '../components/order'
 import Orders from '../views/orders'
 
 // endregion
@@ -36,7 +37,26 @@ app({
 			io.on('update', actions.update)
 		}
 	],
-	view: Orders
+	view: {
+		'/cook': Orders,
+		'/cook/detail/:id': (state, actions, {id}) => {
+			const order = state.orders.filter(({_id}) => _id === id)[0]
+
+			if (!order) return html`
+				<div>Not Found</div>
+			`
+
+			if (order.checkout.to === 'branch') order.checkout = {
+				city: 'Riedering',
+				country: 'Germany',
+				name: 'Dank Pizza #42',
+				street: 'Gubener Straße 71',
+				zipCode: '83081'
+			}
+
+			return Order(order)
+		}
+	}
 })
 
 // endregion

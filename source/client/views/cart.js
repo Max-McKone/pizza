@@ -4,9 +4,10 @@ import {html} from 'hyperapp'
 
 // components
 
+import Address from '../components/address'
+import CartItem from '../components/cart-item'
 import Navigation from '../components/navigation'
 import Price from '../components/price'
-import CartItem from '../components/cart-item'
 
 // internal
 
@@ -20,7 +21,7 @@ export default ({cart, checkout, isLoading}, {modifyCheckout, placeOrder, remove
 	<div>
 		${Navigation({
 			active: '/cart',
-			CartItemCount: cart.length
+			shoppingCartItemCount: cart.length
 		})}
 		<div class="jumbotron jumbotron-fix">
 			<div class="container">
@@ -45,12 +46,13 @@ export default ({cart, checkout, isLoading}, {modifyCheckout, placeOrder, remove
 								To Branch
 							</label>
 						</p>
-						<address>
-							<strong>Dank Pizza #42</strong><br />
-							Gubener Straße 71<br />
-							83081 Riedering<br />
-							Germany
-						</address>
+						${Address({
+							city: 'Riedering',
+							country: 'Germany',
+							name: 'Dank Pizza #42',
+							street: 'Gubener Straße 71',
+							zipCode: '83081'
+						})}
 					</div>
 					<div className="col-md-6">
 						<p>

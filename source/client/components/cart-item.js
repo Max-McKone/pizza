@@ -8,6 +8,7 @@ import Price from './price'
 
 // internal
 
+import getMostExpensivePizza from '../utilities/get-most-expensive-pizza'
 import menu from '../../../menu'
 import pizzaPrice from '../utilities/pizza-price'
 
@@ -15,19 +16,22 @@ import pizzaPrice from '../utilities/pizza-price'
 
 // region CartItem
 
-export default ({pizza, size, toppings, remove}) => html`
+export default ({pizzas, size, toppings, remove}) => html`
 	<div class="card">
 		<div class="card-header">
-			${menu.pizzas[pizza].name}
+			${pizzas
+				.map(pizza => menu.pizzas[pizza].name)
+				.join(' / ')
+			}
 		</div>
-		<img class="card-img img-fluid" src="http://lorempizza.com/512/256/${pizza}"/>
+		<img class="card-img img-fluid" src="http://lorempizza.com/512/256/${pizzas}"/>
 		<ul class="list-group list-group-flush">
 			<li class="list-group-item flex-between">
 				<div>
 					${menu.sizes[size].name}
 				</div>
 				<div>
-					${Price(menu.pizzas[pizza].price)} + ${Price(menu.sizes[size].price)}
+					${Price(getMostExpensivePizza(pizzas))} + ${Price(menu.sizes[size].price)}
 				</div>
 			</li>
 			${Object
@@ -41,7 +45,7 @@ export default ({pizza, size, toppings, remove}) => html`
 				`)}
 		</ul>
 		<div class="card-footer flex-between">
-			${Price(pizzaPrice({pizza, size, toppings}))}
+			${Price(pizzaPrice({pizzas, size, toppings}))}
 			${remove ? html`
 				<button class="btn btn-danger btn-sm" onclick=${remove}>remove</button>
 			` : ''}

@@ -6,11 +6,11 @@ import menu from '../../../menu'
 
 // region pizzaPrice
 
-export default ({pizza, size, toppings}) => Object
+export default ({pizzas, size, toppings}) => Object
 	.keys(toppings)
 	.map(id => toppings[id] * menu.toppings[id].price)
 	.reduce((a, b) => a + b, 0)
-	+ menu.pizzas[pizza].price
+	+ pizzas.map(pizza => menu.pizzas[pizza].price).reduce((a, b) => a + b, 0)
 	+ menu.sizes[size].price
 
 // endregion
