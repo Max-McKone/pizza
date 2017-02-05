@@ -53,9 +53,9 @@ export default {
 		},
 		...rest
 	}),
-	orderStarted: ({isLoading, ...rest}) => ({
-		isLoading: true,
-		...rest
+	orderStarted: state => ({
+		...state,
+		isLoading: true
 	}),
 	orderSuccessful: (state, {body}) => ({
 		...state,
@@ -63,11 +63,11 @@ export default {
 		order: body,
 		isLoading: false
 	}),
-	orderFailed: ({isLoading, ...rest}) => {
-		window.alert('FAILED')
+	orderFailed: state => {
+		window.alert('Something went wrong. :(')
 		return {
-			isLoading: false,
-			...rest
+			...state,
+			isLoading: false
 		}
 
 	}
