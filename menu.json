@@ -20,7 +20,7 @@
 		"hawaii": {
 			"name": "Pizza Hawaii",
 			"price": 2000,
-			"description": "not cultural appropriation!"
+			"description": "No cultural appropriation!"
 		},
 		"dank": {
 			"name": "Dank Pizza",
@@ -37,10 +37,10 @@
 			"price": 4200,
 			"description": "This Pizza is Super!"
 		},
-		"ultra": {
-			"name": "Ultra Pizza",
-			"price": 5000,
-			"description": "This Pizza is so ultra!"
+		"shield": {
+			"name": "S.H.I.E.L.D Pizza",
+			"price": 9002,
+			"description": "Literally the best pizza."
 		}
 	},
 	"toppings": {

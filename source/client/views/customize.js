@@ -138,6 +138,7 @@ export default ({cart, order, customize}, actions, {pizza}) => html`
 								<option value="none">None</option>
 								${Object
 									.keys(menu.pizzas)
+									.filter(key => key !== pizza)
 									.map(key => html`
 										<option value=${key}>${menu.pizzas[key].name}</option>
 									`)
