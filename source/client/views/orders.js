@@ -8,9 +8,30 @@ import Address from '../components/address'
 
 // endregion
 
+// region Order
+
+const Order = ({checkout, _id, status, setStatus}) => html`
+	<tr>
+		<td>
+			${_id}
+		</td>
+		<td>
+			${Address(checkout)}
+		</td>
+		<td>
+			${status === 'baking' ? html`
+				<button class="btn btn-success" onclick=${() => setStatus({_id, status: 'finished'})}>Finish</button>
+			` : html`
+				<button class="btn btn-success" onclick=${() => setStatus({_id, status: 'baking'})}>Undo Finish</button>
+			`}
+		</td>
+	</tr>`
+
+// endregion
+
 // region Main
 
-export default ({orders}) => html`
+export default ({orders}, {setStatus}) => html`
 	<div>
 		<div class="jumbotron jumbotron-fix">
 			<div class="container">
@@ -19,31 +40,38 @@ export default ({orders}) => html`
 		</div>
 		<div class="container">
 			<h3>Baking</h3>
-			<table>
+			<table class="table">
 				<thead>
 					<th>#</th>
 					<th>Address</th>
 					<th>Actions</th>
 				</thead>
-				${orders.map(order => html`
-					<tbody>
-						<tr>
-							<td>
-								
-							</td>
-							<td>
-								${Address(order.checkout)}
-							</td>
-							<td>
-								<button class="btn btn-success">Finish</button>
-							</td>
-						</tr>
-					</tbody>
-				`)}
+				<tbody>
+					${orders
+						.filter(({status}) => status === 'baking')
+						.map(order => Order({
+							...order,
+							setStatus
+						})
+					)}
+				</tbody>
 			</table>
 			<h3>Finished</h3>
-			<table>
-				thead>th*3
+			<table class="table">
+				<thead>
+					<th>#</th>
+					<th>Address</th>
+					<th>Actions</th>
+				</thead>
+				<tbody>
+					${orders
+						.filter(({status}) => status !== 'baking')
+						.map(order => Order({
+							...order,
+							setStatus
+						})
+					)}
+				</tbody>
 			</table>
 		</div>
 	</div>`

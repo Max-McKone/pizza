@@ -44,8 +44,10 @@
   },
   "dependencies": {
     "bootstrap": "^4.0.0-alpha.6",
-    "hyperapp": "0.0.7",
+    "hyperapp": "0.0.9",
     "nedb": "^1.8.0",
+    "socket.io": "^1.7.2",
+    "socket.io-client": "^1.7.2",
     "spirit": "^0.4.0",
     "spirit-body": "0.0.3",
     "spirit-router": "^0.4.0",

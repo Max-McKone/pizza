@@ -7,7 +7,8 @@ import spirit from 'spirit'
 
 // internal
 
-import config from '../../config.json'
+import config from '../../config'
+import socket from './socket'
 
 // routes
 
@@ -65,8 +66,12 @@ const app = route.define([
 
 // region start
 
-http.createServer(spirit.node.adapter(app)).listen({host, port}, () =>
+const server = http.createServer(spirit.node.adapter(app))
+
+server.listen({host, port}, () =>
 	console.info(`listening on http://${host}:${port}`)
 )
+
+socket(server)
 
 // endregion

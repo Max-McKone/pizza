@@ -10,11 +10,9 @@ export default (body) => new Promise((resolve, reject) => {
 	orders.insert(order, (error, savedOrder) => {
 		if (error) return resolve(internalServerError)
 
-		console.log(savedOrder)
-
 		return resolve({
 			status: 200,
-			body: JSON.stringify(order),
+			body: JSON.stringify(savedOrder),
 			headers: {
 				'Content-Type': 'application/json; charset=utf-8'
 			}
