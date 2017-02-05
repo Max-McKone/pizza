@@ -8,23 +8,28 @@ import {orders} from './database'
 
 // endregion
 
+// region variables
+
+let io
+
+// endregion
+
+// region update
+
+export const update = () => io ? orders.find({}, (error, orders) =>
+	io.emit('update', orders)
+) : null
+
+// endregion
+
 // region server
 
 export default httpServer => {
-	const io = ssio(httpServer)
+	io = ssio(httpServer)
 	io.on('connection', client => {
-		console.log('connection!')
-		orders.find({}, (error, orders) => {
-			console.log(orders)
-			io.emit('update', orders)
-		})
-
+		update()
 		client.on('set-status', ({_id, status}) => {
-			orders.update({_id}, {$set: {status}})
-			orders.find({}, (error, orders) => {
-				console.log(orders)
-				io.emit('update', orders)
-			})
+			orders.update({_id}, {$set: {status}}, update)
 		})
 	})
 }

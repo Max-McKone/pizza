@@ -11,6 +11,7 @@ import Price from '../components/price'
 
 import menu from '../../../menu'
 import pizzaPrice from '../utilities/pizza-price'
+import getMostExpensivePizza from '../utilities/get-most-expensive-pizza'
 
 // endregion
 
@@ -50,12 +51,16 @@ const Sizes = ({size: selectedSize}, {customizeSize}) => Object
 
 // region PriceTable
 
-const PriceTable = ({pizza, size, toppings}, {addToCart, customizeRemoveTopping}) => html`
+const PriceTable = ({pizza, size, toppings, secondHalf}, {addToCart, customizeRemoveTopping}) => html`
 	<table class="table">
 		<tbody>
 			<tr>
-				<td>${menu.pizzas[pizza].name}</td>
-				<td>${Price(menu.pizzas[pizza].price)}+${Price(menu.sizes[size].price)}</td>
+				<td>${[pizza, secondHalf]
+					.filter(item => item !== 'none')
+					.map(pizza => menu.pizzas[pizza].name)
+					.join(' / ')
+				}</td>
+				<td>${Price(getMostExpensivePizza([pizza, secondHalf].filter(item => item !== 'none')))}+${Price(menu.sizes[size].price)}</td>
 				<td>${menu.sizes[size].name}</td>
 			</tr>
 			${Object
@@ -79,13 +84,13 @@ const PriceTable = ({pizza, size, toppings}, {addToCart, customizeRemoveTopping}
 			<tr>
 				<td>Total</td>
 				<td>
-					${Price(pizzaPrice({pizza, size, toppings}))}
+					${Price(pizzaPrice({pizzas: [pizza, secondHalf].filter(item => item !== 'none'), size, toppings}))}
 				</td>
 				<td>
 					<button style=${{
 						width: '100%'
 					}} class="btn btn-success btn-sm" onclick=${() => addToCart({
-						pizza,
+						pizzas: [pizza, secondHalf].filter(item => item !== 'none'),
 						size,
 						toppings
 					})}>Add To Cart</button>
@@ -98,7 +103,7 @@ const PriceTable = ({pizza, size, toppings}, {addToCart, customizeRemoveTopping}
 
 // region Customize
 
-export default ({cart, customize}, actions, {id}) => html`
+export default ({cart, customize}, actions, {pizza}) => html`
 	<div>
 		${Navigation({
 			active: '/menu',
@@ -110,12 +115,12 @@ export default ({cart, customize}, actions, {id}) => html`
 				justifyContent: 'flex-start',
 				alignItems: 'center'
 			}}>
-				<div class="pizza" style=${{backgroundImage: `url(http://lorempizza.com/512/256/${id})`}}></div>
+				<div class="pizza" style=${{backgroundImage: `url(http://lorempizza.com/512/256/${pizza})`}}></div>
 				<div style=${{
 					paddingLeft: '32px'
 				}}>
-					<h1>${menu.pizzas[id].name}</h1>
-					<p>${menu.pizzas[id].description}</p>
+					<h1>${menu.pizzas[pizza].name}</h1>
+					<p>${menu.pizzas[pizza].description}</p>
 				</div>
 			</div>
 		</div>
@@ -124,6 +129,21 @@ export default ({cart, customize}, actions, {id}) => html`
 				<div class="col-md-2">
 					<h3>Size</h3>
 					${Sizes(customize, actions)}
+					${customize.size === 'xl' ? html`
+						<div>
+							<br /><br />
+							<h4>Second Half</h4>
+							<select value=${customize.secondHalf} oninput=${e => actions.customizeSetSecondHalf(e.target.value)} class="form-control">
+								<option value="none">None</option>
+								${Object
+									.keys(menu.pizzas)
+									.map(key => html`
+										<option value=${key}>${menu.pizzas[key].name}</option>
+									`)
+								}
+							</select>
+						</div>
+					` : null}
 				</div>
 				<div class="col-md-4">
 					<h3>Toppings</h3>
@@ -131,7 +151,7 @@ export default ({cart, customize}, actions, {id}) => html`
 				</div>
 				<div class="col-md-6">
 					<h3>Price</h3>
-					${PriceTable({...customize, pizza: id}, actions)}
+					${PriceTable({...customize, pizza}, actions)}
 				</div>
 			</div>
 		</div>

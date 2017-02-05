@@ -74,4 +74,6 @@ server.listen({host, port}, () =>
 
 socket(server)
 
+export default server
+
 // endregion

@@ -13,7 +13,7 @@ import Address from '../components/address'
 const Order = ({checkout, _id, status, setStatus}) => html`
 	<tr>
 		<td>
-			${_id}
+			<a href="/cook/detail/${_id}">${_id}</a>
 		</td>
 		<td>
 			${Address(checkout)}

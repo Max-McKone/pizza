@@ -6,7 +6,8 @@ export default {
 		...rest,
 		customize: {
 			toppings: {},
-			size: 'xl'
+			size: 'xl',
+			secondHalf: 'none'
 		}
 	}),
 	removeFromCart: ({cart, ...rest}, toRemove) => ({
@@ -16,20 +17,47 @@ export default {
 	customizeSize: ({customize, ...rest}, size) => ({
 		customize: {
 			...customize,
-			size
+			size,
+			secondHalf: 'none',
+			toppings: {}
 		},
 		...rest
 	}),
-	customizeAddTopping: ({customize, ...rest}, topping) => ({
+	customizeSetSecondHalf: (state, value) => ({
+		...state,
 		customize: {
-			...customize,
-			toppings: {
-				...customize.toppings,
-				[topping]: customize.toppings[topping] ? customize.toppings[topping] + 1 : 1
-			}
-		},
-		...rest
+			...state.customize,
+			secondHalf: state.customize.size === 'xl' ? value : 'none'
+		}
 	}),
+	customizeAddTopping: ({customize, ...rest}, topping) => {
+		const amount = Object
+			.keys(customize.toppings)
+			.map(key => customize.toppings[key])
+			.reduce((a, b) => a + b, 0)
+
+		// return old state if no more toppings are possible
+		if (amount >= ({
+			xl: 5,
+			md: 3,
+			sm: 2
+		})[customize.size]) return {
+			customize,
+			...rest
+		}
+
+		// add topping to toppings
+		return {
+			customize: {
+				...customize,
+				toppings: {
+					...customize.toppings,
+					[topping]: customize.toppings[topping] ? customize.toppings[topping] + 1 : 1
+				}
+			},
+			...rest
+		}
+	},
 	customizeRemoveTopping: ({customize, ...rest}, topping) => {
 		const toppings = {...customize.toppings}
 

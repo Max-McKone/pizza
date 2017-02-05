@@ -1,12 +1,12 @@
 // region import
 
-import {html, app} from 'hyperapp'
+import {app, html} from 'hyperapp'
 
 // endregion
 
 // region Address
 
-export default ({name, street, zipCode, city, country, phone}) => html`
+export default ({city, country, name, phone, street, zipCode}) => html`
 	<address>
 		<strong>${name}</strong><br />
 		${street}<br />

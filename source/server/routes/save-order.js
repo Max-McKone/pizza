@@ -1,14 +1,51 @@
+// region import
+
+import {update} from '../socket'
+import {badRequest, internalServerError} from './error'
 import {orders} from '../database'
-import {internalServerError} from './error'
-export default (body) => new Promise((resolve, reject) => {
+
+// endregion
+
+// region save
+
+export default body => new Promise((resolve, reject) => {
 
 	const order = {
 		...JSON.parse(body),
 		status: 'baking'
 	}
 
-	orders.insert(order, (error, savedOrder) => {
+	// missing address?
+	if (order.checkout && order.checkout.to === 'custom') {
+		const {city, country, name, phone, street, zipCode} = order.checkout
+		if (
+			!city
+			|| !country
+			|| !name
+			|| !phone
+			|| !street
+			|| !zipCode
+		) return resolve(badRequest)
+	}
+
+	// invalid
+	if (
+		!order.checkout
+		|| order.checkout.to !== 'branch'
+		|| !order.checkout.name
+		|| !order.checkout.phone
+	) return resolve(badRequest)
+
+	// empty cart?
+	if (
+		!order.cart
+		|| !order.cart.length
+	) return resolve(badRequest)
+
+	return orders.insert(order, (error, savedOrder) => {
 		if (error) return resolve(internalServerError)
+
+		update()
 
 		return resolve({
 			status: 200,
@@ -19,3 +56,5 @@ export default (body) => new Promise((resolve, reject) => {
 		})
 	})
 })
+
+// endregion

@@ -4,9 +4,10 @@ import {html} from 'hyperapp'
 
 // components
 
+import Address from './address'
+import CartItem from './cart-item'
 import Navigation from './navigation'
 import Price from './price'
-import CartItem from './cart-item'
 
 // internal
 
@@ -16,18 +17,12 @@ import pizzaPrice from '../utilities/pizza-price'
 
 // region Cart
 
-export default ({cart, checkout: {country, phone, street, zipCode, city, to, name}, status}) => html`
+export default ({cart, checkout, status}) => html`
 	<div>
 		<div class="jumbotron jumbotron-fix">
 			<div class="container">
 				<h1>Order <span class="badge badge-default">${status}</span></h1>
-				<address>
-					<strong>${name}</strong><br />
-					${street}<br />
-					${zipCode} ${city}<br />
-					${country}<br />
-					${phone}
-				</address>
+				${Address(checkout)}
 			</div>
 		</div>
 		<div class="container">
