@@ -18,3 +18,8 @@
 1. `npm i`
 2. `npm run build`
 3. `npm run test`
+
+## Websites
+
+User: `http://127.0.0.1:8080`  
+Cook: `http://127.0.0.1:8080/cook`
